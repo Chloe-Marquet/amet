@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Images index{% endblock %}
+
+{% block body %}
+    <h1>Images index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created_at</th>
+            <th>Actions</th>
+            <th>Images</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for myimage in images %}
+            <tr>
+                <td>{{ myimage.id }}</td>
+                <td>{{ myimage.name }}</td>
+                <td>{{ myimage.createdAt ? myimage.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+
+                    <a href="{{ path('images_edit', {'id': myimage.id}) }}">edit</a>
+                </td>
+
+                <td>
+
+                    <img src="{{ asset('/uploads/' ~ myimage.name) }}" alt="Image" width="150">
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('images_new') }}">Create new</a>
+{% endblock %}

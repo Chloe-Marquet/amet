@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -8,17 +8,102 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="container">
+    {#<h1>Hello {{ controller_name }}! ✅</h1>#}
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success" role="alert">{{ message }}</div>
     {% endfor %}
 
-    This friendly message is coming from:
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <h1><img src="/images/Logo-Amet.png"></h1>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{{ path('app_register') }}">
+                            <strong>S'inscrire</strong>
+                        </a>
+                        <a class="button is-light" href="{{ path('app_login') }}">
+                            Se connecter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container has-text-centered">
+        <img src="/images/Logo-Amet.png">
+
+        <h2 class="my-6 title has-text-weight-light">Stockage gratuit et classement automatique de tous vos souvenirs</h2>
+
+        <img src="/images/multiple_photos_home.jpeg">
+
+
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">John Smith</p>
+                        <p class="subtitle is-6">@johnsmith</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    <a href="#">#css</a> <a href="#">#responsive</a>
+                    <br>
+                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="section">
+            <h2 class="my-6 title has-text-weight-light">Vos sauvegardes sont en lieu sûr</h2>
+            <h3 class="subtitle">Sauvegardez gratuitement un nombre illimité de photos et de vidéos, jusqu'à une résolution de 16 mégapixels ou 1080p HD. Vous pouvez ensuite y accéder sur votre mobile, votre tablette ou votre ordinateur via photos.google.com. Elles sont sauvegardées en lieu sûr, et restent toujours à portée de main.
+            </h3>
+        </section>
+
+        <section class="section">
+            <h2 class="my-6 title has-text-weight-light">Trouvez vos photos plus rapidement</h2>
+            <h3 class="subtitle">Vos photos sont organisées automatiquement, et vous pouvez effectuer des recherches en fonction des lieux et des sujets immortalisés, sans devoir ajouter des tags. Pour trouver toutes les photos de votre animal de compagnie, recherchez simplement "chien".</h3>
+        </section>
+
+        <section class="section">
+            <h2 class="my-6 title has-text-weight-light">Retrouvez les photos de tous les participants dans une même collection</h2>
+            <h3 class="subtitle">Regroupez vos photos avec celles de vos proches grâce à des albums partagés. Ainsi, vous ne ratez jamais rien, quel que soit l'appareil dont chacun dispose.</h3>
+        </section>
+    </div>
+
+    {#This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ '/Users/chloemarquet/Documents/Developpement/amet/src/Controller/HomePageController.php'|file_link(0) }}">src/Controller/HomePageController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/Users/chloemarquet/Documents/Developpement/amet/templates/home_page/index.html.twig'|file_link(0) }}">templates/home_page/index.html.twig</a></code></li>
-    </ul>
+    </ul>#}
 </div>
 {% endblock %}

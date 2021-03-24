@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    {# Vérifier si la route est "albums_edit" on affiche les images #}
+    {% if app.request.attributes.get('_route') == 'albums_edit' %}
+        <h2>Images</h2>
+        {% for image in album.images %}
+            <div>
+                <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+                <a href="{{ path('albums_delete_image', {id: image.id}) }}"
+                   data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

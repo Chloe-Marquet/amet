@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -15,5 +17,12 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Amet</strong> by Tristan & Chloé.
+                </p>
+            </div>
+        </footer>
     </body>
 </html>
