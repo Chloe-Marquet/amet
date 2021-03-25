@@ -34,6 +34,17 @@ class Images
      */
     private $created_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Favoris::class, inversedBy="images")
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
@@ -90,6 +101,30 @@ class Images
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getFavoris(): ?Favoris
+    {
+        return $this->favoris;
+    }
+
+    public function setFavoris(?Favoris $favoris): self
+    {
+        $this->favoris = $favoris;
 
         return $this;
     }

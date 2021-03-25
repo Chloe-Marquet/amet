@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ImagesType extends AbstractType
 {
@@ -15,6 +16,8 @@ class ImagesType extends AbstractType
     {
         $builder
             ->add('albums')
+
+            -> add('favoris')
             ->add('images', FileType::class, [
                 'label' =>false,
                 'multiple' => true,

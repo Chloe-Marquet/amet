@@ -12,13 +12,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/albums")
  */
 class AlbumsController extends AbstractController
 {
+    /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
      * @Route("/", name="albums_index", methods={"GET"})
      */
@@ -61,6 +71,8 @@ class AlbumsController extends AbstractController
                 $now->getTimestamp();
                 $img->setCreatedAt($now);
                 $album->addImage($img);
+                $user = $this->security->getUser();
+                $img->setUser($user);
             }
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -114,6 +126,8 @@ class AlbumsController extends AbstractController
                 $now->getTimestamp();
                 $img->setCreatedAt($now); //date
                 $album->addImage($img);
+                $user = $this->security->getUser();
+                $img->setUser($user);
             }
             $this->getDoctrine()->getManager()->flush();
 

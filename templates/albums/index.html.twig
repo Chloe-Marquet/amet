@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}albums index{% endblock %}
+{% block title %}Albums{% endblock %}
 
 {% block body %}
     <h1>Albums</h1>
@@ -10,7 +10,7 @@
         <tr>
 
             <th>Title</th>
-            <th>Actions</th>
+
             <th> Image </th>
         </tr>
         </thead>
@@ -18,12 +18,8 @@
         {% for album in albums %}
             <tr>
 
-                <td>{{ album.title }}</td>
+                <td>   <a href="{{ path('albums_edit', {'id': album.id}) }}"> {{ album.title }} </a></td>
 
-                <td>
-                    <a href="{{ path('albums_show', {'id': album.id}) }}">show</a>
-                    <a href="{{ path('albums_edit', {'id': album.id}) }}">edit</a>
-                </td>
                 <td>
                     {% for image in album.images %}
                         <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">

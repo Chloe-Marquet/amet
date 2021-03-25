@@ -14,12 +14,25 @@ use App\Form\AlbumsType;
 use App\Repository\AlbumsRepository;
 use DateTime;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\User;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/images")
  */
 class ImagesController extends AbstractController
 {
+
+    /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
      * @Route("/", name="images_index", methods={"GET"})
      */
@@ -60,6 +73,8 @@ class ImagesController extends AbstractController
                 $now->format('Y-m-d H:i:s');
                 $now->getTimestamp();
                 $myimage->setCreatedAt($now);
+                $user = $this->security->getUser();
+                $myimage->setUser($user);
 
             }
             $entityManager = $this->getDoctrine()->getManager();
@@ -114,6 +129,9 @@ class ImagesController extends AbstractController
                 $now->format('Y-m-d H:i:s');
                 $now->getTimestamp();
                 $myimage->setCreatedAt($now);
+                $user = $this->security->getUser();
+                $myimage->setUser($user);
+
             }
 
             $this->getDoctrine()->getManager()->flush();
