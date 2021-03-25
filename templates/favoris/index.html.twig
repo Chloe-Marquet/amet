@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Favoris index{% endblock %}
+
+{% block body %}
+    <h1>Favoris index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>images</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for favori in favoris %}
+            <tr>
+
+
+                <td>
+                    {% for image in favori.images %}
+                        <a href="{{ path('favoris_edit', {'id': favori.id}) }}">
+                            <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+                        </a>
+                    {% endfor %}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('favoris_new') }}">Create new</a>
+{% endblock %}
