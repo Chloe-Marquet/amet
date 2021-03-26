@@ -1,4 +1,18 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    {# Vérifier si la route est "favoris_edit" on affiche les images #}
+    {% if app.request.attributes.get('_route') == 'favoris_edit' %}
+        <h2>Favoris</h2>
+        {% for image in favori.images %}
+            {% if image.user.id == app.user.id %}
+                <div>
+                    <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+                    <a href="{{ path('favoris_delete_image', {id: image.id}) }}"
+                       data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+<button class="button is-info">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

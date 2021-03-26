@@ -22,7 +22,7 @@
     <div class="container">
 
         {% if app.user %}
-            <nav class="navbar" role="navigation" aria-label="main navigation">
+            <nav class="navbar py-4" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="">
                         <h1><img src="/assets/Logo_Amet.png" alt="logo"></h1>
@@ -82,7 +82,7 @@
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
         {#{% if app.user %}#}
         <div class="columns">
-            <div class="column is-one-quarter">
+            <div class="column is-one-quarter my-5">
 
                 <aside class="menu">
                     <ul class="menu-list">

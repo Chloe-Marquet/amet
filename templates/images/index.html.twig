@@ -3,36 +3,56 @@
 {% block title %}Images{% endblock %}
 
 {% block body %}
-    <h1>Images index</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
+    <div class="is-flex is-flex-direction-row is-justify-content-space-between my-5">
+        <h1 class="title has-text-weight-light">Images</h1>
+        <a class="button is-info" href="{{ path('images_new') }}">Ajouter</a>
+    </div>
+
+    <div class="columns is-multiline">
+        {% for myimage in images |sort((b, a) => a.created_at <=> b.created_at)%}
+            <div class="column is-one-quarter-desktop is-half-tablet">
+
+                    <div class="card">
+                        {% if myimage.user.id == app.user.id %}
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <a href="{{ path('images_edit', {'id': myimage.id}) }}">
+                                    <img class="image is-128x128" src="{{ asset('/uploads/' ~ myimage.name) }}" alt="Image">
+                                </a>
+                            </figure>
+                        </div>
+                        {% endif %}
+                    </div>
+
+            </div>
+        {% else %}
+            <div>
+                <p>no records found</p>
+            </div>
+        {% endfor %}
+    </div>
 
 
-            <th>Images</th>
-        </tr>
-        </thead>
-        <tbody>
+    {#<table class="table">#}
+        {#<tbody>
         {% for myimage in images %}
             <tr>
-
-
-
-
-                <td>
-                    <a href="{{ path('images_edit', {'id': myimage.id}) }}">
-                        <img src="{{ asset('/uploads/' ~ myimage.name) }}" alt="Image" width="150">
-                    </a>
-                </td>
+                {% if myimage.user.id == app.user.id %}
+                    <td>
+                        <a href="{{ path('images_edit', {'id': myimage.id}) }}">
+                            <img src="{{ asset('/uploads/' ~ myimage.name) }}" alt="Image" width="150">
+                        </a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+        </tbody>#}
+    {#</table>#}
 
-    <a href="{{ path('images_new') }}">Create new</a>
+
 {% endblock %}

@@ -3,9 +3,37 @@
 {% block title %}Favoris index{% endblock %}
 
 {% block body %}
-    <h1>Favoris index</h1>
+    <div class="is-flex is-flex-direction-row is-justify-content-space-between my-5">
+        <h1 class="title has-text-weight-light">Favoris</h1>
+        <a class="button is-info" href="{{ path('favoris_new') }}">Ajouter</a>
+    </div>
 
-    <table class="table">
+    <div class="columns is-multiline">
+        {% for favori in favoris %}
+            {% for image in favori.images %}
+                <div class="column is-one-quarter-desktop is-half-tablet">
+
+                    <div class="card">
+                        {% if image.user.id == app.user.id %}
+                            <div class="card-image">
+                                <figure class="image is-3by2">
+                                    <a href="{{ path('favoris_edit', {'id': favori.id}) }}">
+                                        <img class="image is-128x128" src="{{ asset('/uploads/' ~ image.name) }}" alt="Image">
+                                    </a>
+                                </figure>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                    <div>
+                        <p>no records found</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+    </div>
+
+    {#<table class="table">
         <thead>
         <tr>
 
@@ -16,12 +44,13 @@
         {% for favori in favoris %}
             <tr>
 
-
                 <td>
                     {% for image in favori.images %}
+                        {% if image.user.id == app.user.id %}
                         <a href="{{ path('favoris_edit', {'id': favori.id}) }}">
                             <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
                         </a>
+                        {% endif %}
                     {% endfor %}
 
                 </td>
@@ -32,7 +61,5 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('favoris_new') }}">Create new</a>
+    </table>#}
 {% endblock %}

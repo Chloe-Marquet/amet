@@ -93,7 +93,7 @@ class Images
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreated_At(): ?\DateTimeInterface
     {
         return $this->created_at;
     }

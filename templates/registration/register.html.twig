@@ -7,18 +7,32 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {{ form_row(registrationForm.photoProfil) }}
-        {{ form_row(registrationForm.email) }}
+    {{ form_start(registrationForm, {'attr': {'class': 'box column is-one-third is-offset-one-third my-6 px-6'}}) }}
+
+    <div class='is-flex is-flex-direction-row is-justify-content-center'>
+        <img src="/assets/Logo_Amet.png" alt="logo" width="80">
+    </div>
+
+    <h1 class="has-text-centered my-5 is-size-4 has-text-weight-light">Inscription</h1>
+
+        {{ form_row(registrationForm.firstName, {'attr': {'class': 'input mb-5'}}) }}
+        {{ form_row(registrationForm.lastName, {'attr': {'class': 'input mb-5'}}) }}
+        {{ form_row(registrationForm.photoProfil, {'attr': {'class': 'input mb-5'}}) }}
+        {{ form_row(registrationForm.email, {'attr': {'class': 'input mb-5'}}) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Password',
+            'attr': {'class': 'input mb-5'}
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'checkbox mb-5'}}) }}
 
-        <button type="submit" class="btn">Register</button>
+
+    <div class="field mt-5">
+        <p class="control has-text-centered">
+            <button type="submit" class="button is-info">S'incrire</button>
+        </p>
+    </div>
+
+
     {{ form_end(registrationForm) }}
 {% endblock %}

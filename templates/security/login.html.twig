@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container">
 
-    <form method="post" class="box column is-two-fifths is-offset-two-fifths my-6">
+    <form method="post" class="box column is-one-third is-offset-one-third my-6 px-6">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -16,11 +16,11 @@
             </div>
         {% endif %}
 
-        <div class='card-image'>
-            <img class="image" src="/assets/Logo_Amet.png" alt="logo" width="120">
+        <div class='is-flex is-flex-direction-row is-justify-content-center'>
+            <img src="/assets/Logo_Amet.png" alt="logo" width="80">
         </div>
 
-        <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+        <h1 class="has-text-centered my-5 is-size-4 has-text-weight-light">Connexion</h1>
 
         {# Email #}
         <div class="field">

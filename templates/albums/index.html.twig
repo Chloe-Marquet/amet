@@ -3,9 +3,46 @@
 {% block title %}Albums{% endblock %}
 
 {% block body %}
-    <h1>Albums</h1>
 
-    <table class="table">
+    <div class="is-flex is-flex-direction-row is-justify-content-space-between my-5">
+        <h1 class="title has-text-weight-light">Albums</h1>
+        <a class="button is-info" href="{{ path('albums_new') }}">Ajouter</a>
+    </div>
+
+
+    <div class="columns is-multiline">
+        {% for album in albums %}
+            <div class="column is-one-quarter-desktop is-half-tablet">
+
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            <a href="{{ path('albums_edit', {'id': album.id}) }}"> {{ album.title }}</a>
+                        </p>
+                    </header>
+                    {% for image in album.images %}
+                        {% if image.user.id == app.user.id %}
+                            <div class="card-image">
+                                <figure class="image is-3by2">
+                                    <img class="image is-128x128" src="{{ asset('/uploads/' ~ image.name) }}" alt="Image">
+                                </figure>
+                            </div>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+
+            </div>
+        {% else %}
+            <div>
+                <p>no records found</p>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+    {#<table class="table">
         <thead>
         <tr>
 
@@ -18,12 +55,15 @@
         {% for album in albums %}
             <tr>
 
-                <td>   <a href="{{ path('albums_edit', {'id': album.id}) }}"> {{ album.title }} </a></td>
-
                 <td>
-                    {% for image in album.images %}
+                    <a href="{{ path('albums_edit', {'id': album.id}) }}"> {{ album.title }} </a></td>
+                <td>
+
+                {% for image in album.images %}
+                    {% if image.user.id == app.user.id %}
                         <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
-                    {% endfor %}
+                    {% endif %}
+                {% endfor %}
 
                 </td>
             </tr>
@@ -33,7 +73,5 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('albums_new') }}" style="text-align: center" >Create new</a>
+    </table>#}
 {% endblock %}

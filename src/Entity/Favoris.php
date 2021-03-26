@@ -24,6 +24,11 @@ class Favoris
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="favoris")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -77,6 +82,18 @@ class Favoris
     public function setIsFavoris(bool $isFavoris): self
     {
         $this->isFavoris = $isFavoris;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -5,11 +5,13 @@
     {% if app.request.attributes.get('_route') == 'albums_edit' %}
         <h2>Images</h2>
         {% for image in album.images %}
+            {% if image.user.id == app.user.id %}
             <div>
                 <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
                 <a href="{{ path('albums_delete_image', {id: image.id}) }}"
                    data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
             </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 <button class="btn">{{ button_label|default('Save') }}</button>

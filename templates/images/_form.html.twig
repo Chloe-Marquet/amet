@@ -5,10 +5,12 @@
     {% if app.request.attributes.get('_route') == 'images_edit' %}
         <h2>Images</h2>
 
-        <div>
-            <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+        {% if image.user.id == app.user.id %}
+            <div>
+                <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
 
-        </div>
+            </div>
+        {% endif %}
 
     {% endif %}
 <button class="btn">{{ button_label|default('Save') }}</button>
